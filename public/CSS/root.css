@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Sigmar&family=Source+Sans+Pro&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-family: "Sigmar", cursive;
+  font-size: xx-large;
+}
+

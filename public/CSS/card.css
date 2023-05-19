@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins&display=swap');
+
+img {
+  width: 90%;
+  padding-top: 20%;
+}
+
+.column {
+  flex: 50%;
+}
+
+.column1 {
+  text-align: center;
+}
+
+.column p {
+  text-align: left;
+}
+
+.row {
+  display: flex;
+  background-color: #ffc4d1;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+  width: 30%;
+  margin-bottom: 2%;
+  border-radius: 2%;
+}
+
+
+.navn {
+font-family: 'Lilita One', cursive;
+  text-transform: uppercase;
+  font-size: 2.2rem;
+  margin-bottom: 0%;
+  margin-top: 1%;
+  text-align: left;
+}
+
+.forfatter {
+  margin-top: 0%;
+  margin-left: 40%;
+  font-family: "Indie Flower", cursive;
+}

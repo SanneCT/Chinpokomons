@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Sigmar&family=Source+Sans+Pro&display=swap');
+
+.navbar {
+    background-color: #efaac4;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+    margin-bottom: 1rem;
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 1rem 1.5rem;
+    
+}
+
+nav li {
+    padding-left: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+nav a:hover {
+    color: #fff;
+}
+
+.logo-mid {
+    padding-left: 5rem;
+}
+

@@ -1,0 +1,44 @@
+<%-include('./partials/header') %>
+
+<% if(pokomons.length > 0){ %> <% pokomons.forEach((pokomon) => { %>
+
+
+<div class="row">
+  <div class="column column1">
+    <img class="img-1" src="https://via.placeholder.com/100" alt="placeholder" />
+  </div>
+
+  <div class="column" >
+    <h1 class="navn"><%= pokomon.name %></h1>
+    <br />
+    <p>Abilities:</p>
+    <p>1: <%= pokomon.ability1 %></p>
+    <p>2: <%= pokomon.ability2 %></p>
+    <p>3: <%= pokomon.ability3 %></p>
+    <p class="forfatter"><em><%= pokomon.author %></em></p>
+    <button type="submit" class="delete" data-id="<%= pokomon._id %>">Slett</button>
+  </div>
+</div>
+
+<% }) %> <% } %> <%-include('./partials/footer') %>
+
+<script>
+  document.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('delete')) {
+      const id = e.target.dataset.id;
+      console.log(id)
+
+      try {
+        const res = await fetch(`/deletePokomon/${id}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        const data = await res.json();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+</script>

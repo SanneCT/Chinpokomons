@@ -1,0 +1,24 @@
+<nav class="navbar">
+    <div class="logo">
+        <h1>
+            <a href="/"><li class="logo">Logo</li></a>
+        </h1>
+    </div>
+    <div>
+        <% if(typeof(user) !== 'undefined' && user) {%>
+            <h1 class="logo-mid">Chinpokomon - <%= user.username %></h1>
+        <% } else { %>
+            <h1 class="logo-mid">Chinpokomon</h1>
+        <% } %>
+    </div>
+    <ul>
+        <% if(typeof(user) !== 'undefined' && user) {%>
+            <a href="/home"><li>Hjem</li></a>
+            <a href="/veileder"><li>Brukerstøtte</li></a>
+            <a href="/logout"><li>Logg ut</li></a>
+        <% } else { %> 
+            <a href="/home"><li>Logg inn</li></a>
+        <% } %>
+
+    </ul>
+</nav>
