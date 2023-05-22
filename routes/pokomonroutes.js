@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const { sendPokomon, filter, deletePokomon, updatePokomon, } = require('../controllers/pokomoncontroller');
 
-router.post('/pokomon', sendPokomon); 
+router.post('/pokomon', sendPokomon);
 
 router.get('/:username', filter);
 

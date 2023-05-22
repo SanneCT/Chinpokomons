@@ -1,7 +1,7 @@
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 input {
@@ -14,14 +14,11 @@ input {
 }
 
 input[type="submit"] {
-    width: 10%;
-    background-color: #efaac4;
+  width: 10%;
+  background-color: #efaac4;
 }
 
 input[type="submit"]:hover {
-    background-color: #F4EBE8;
-    border: 1px solid #000;
+  background-color: #f4ebe8;
+  border: 1px solid #000;
 }
-  
-
-  

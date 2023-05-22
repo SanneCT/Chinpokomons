@@ -1,27 +1,26 @@
-<%-include('./partials/header') %>
-
-
-
-<% if(pokomons.length > 0){ %> <% pokomons.forEach((pokomon) => { %>
-  <h1>Chinpokomons by <%= username %></h1>
+<%-include('./partials/header') %> <% if(pokomons.length > 0){ %> <%
+pokomons.forEach((pokomon) => { %>
+<h1>Chinpokomons by <%= username %></h1>
 
 <div class="row">
   <div class="column column1">
-    <img class="img-1" src="https://via.placeholder.com/100" alt="placeholder" />
+    <img
+      class="img-1"
+      src="https://via.placeholder.com/100"
+      alt="placeholder"
+    />
   </div>
 
   <div class="column">
     <h1 class="navn"><%= pokomon.name %></h1>
     <br />
-    <p> Ability 1: <%= pokomon.ability1 %></p>
-    <p> Ability 2: <%= pokomon.ability2 %></p>
-    <p> Ability 3: <%= pokomon.ability3 %></p>
+    <p>Ability 1: <%= pokomon.ability1 %></p>
+    <p>Ability 2: <%= pokomon.ability2 %></p>
+    <p>Ability 3: <%= pokomon.ability3 %></p>
     <p class="forfatter"><em><%= pokomon.author %></em></p>
   </div>
 </div>
 
 <% }) %> <% } else { %>
-<h1> Beklager, det finnes ingen bruker med brukernavnet: <%= username %></h1> 
-    <% } %> 
-
-<%-include('./partials/footer') %>
+<h1>Beklager, det finnes ingen bruker med brukernavnet: <%= username %>.</h1>
+<% } %> <%-include('./partials/footer') %>

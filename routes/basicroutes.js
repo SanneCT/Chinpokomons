@@ -8,7 +8,7 @@ router.get('/', index); //henter pokomons i defaultcontrollers fra index funksjo
 
 router.get('/login', login);
 
-router.post('/login', loginUser); 
+router.post('/login', loginUser);
 
 router.get('/createuser', createuserform);
 

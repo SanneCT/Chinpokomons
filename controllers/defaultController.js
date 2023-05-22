@@ -2,9 +2,9 @@ const Pokomons = require('../models/pokomon');
 
 const index = (req, res, next) => {
     Pokomons.find().sort({ createdAt: -1 })
-    .then((result) => {
-        res.render('index', { pokomons: result });
-    })
+        .then((result) => {
+            res.render('index', { pokomons: result });
+        })
 }
 
 const login = (req, res, next) => {
@@ -28,5 +28,6 @@ module.exports = {
     login,
     logout,
     createuserform,
-    veileder}
+    veileder
+}
 

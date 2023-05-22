@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&family=Poppins&display=swap");
 
 img {
   width: 90%;
@@ -30,9 +30,8 @@ img {
   border-radius: 2%;
 }
 
-
 .navn {
-font-family: 'Lilita One', cursive;
+  font-family: "Lilita One", cursive;
   text-transform: uppercase;
   font-size: 2.2rem;
   margin-bottom: 0%;

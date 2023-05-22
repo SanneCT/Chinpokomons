@@ -73,7 +73,6 @@
     e.preventDefault();
     const event = e.submitter.defaultValue;
 
-
     switch (event) {
       case "Last opp":
         console.log("making pokomon");
@@ -102,7 +101,7 @@
       case "Oppdater":
         console.log("updating pokomon");
         try {
-          const response = await fetch("/updatePokomon/",  {
+          const response = await fetch("/updatePokomon/", {
             method: "PUT",
             body: JSON.stringify({
               name: addpokomonform["name"].value,

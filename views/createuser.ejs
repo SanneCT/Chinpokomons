@@ -5,16 +5,12 @@
   <h1>Opprett en bruker</h1>
 
   <input type="text" name="username" id="username" placeholder="username" required/>
-  
 
   <input type="password" name="password" id="password" placeholder="password" required/>
   <div class="username error"></div>
   <div class="password error"></div>
 
- 
-
   <input type="submit" value="Opprett bruker" />
-
 
 </form>
 <%-include('./partials/footer')%>
@@ -27,8 +23,7 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-
-    //rreset errors
+    //reset errors
     usernameError.textContent = "";
     passwordError.textContent = "";
 
