@@ -1,51 +1,164 @@
 <%-include('./partials/header') %>
 
 <form action="" id="addPokomon">
-<p class="d-none"><%= user.username %></p>
+  <p class="d-none"><%= user.username %></p>
 
-        <input type="text" name="name" placeholder="name of chinpokomon">
+  <h1>Last opp chinpokomons</h1>
 
-        <input type="text" name="ability1" placeholder="ability 1">
+  <input type="text" name="name" required placeholder="navn på chinpokomon" />
 
-        <input type="text" name="ability2" placeholder="ability 2">
-        
-        <input type="text" name="ability3" placeholder="ability 3">
-        
-        <input type="submit" value="Last opp">
-    </form>
+  <input type="text" name="ability1" required placeholder="ability 1" />
 
+  <input type="text" name="ability2" required placeholder="ability 2" />
 
-<%-include('./partials/footer') %>
+  <input type="text" name="ability3" required placeholder="ability 3" />
+
+  <input class="form-input btn" type="submit" value="Last opp" />
+  <input class="form-input btn" type="submit" value="Oppdater" />
+</form>
+<br /><br />
+
+<h1>Administrer egne chinpokomons</h1>
+<br />
+
+<% if(pokomons.length > 0){ %> <% pokomons.forEach((pokomon) => { %>
+
+<div class="row">
+  <div class="column column1">
+    <img
+      class="img-1"
+      src="https://via.placeholder.com/100"
+      alt="placeholder"
+    />
+  </div>
+
+  <div class="column">
+    <h1 class="navn"><%= pokomon.name %></h1>
+    <br />
+    <p>Abilities:</p>
+    <p>1: <%= pokomon.ability1 %></p>
+    <p>2: <%= pokomon.ability2 %></p>
+    <p>3: <%= pokomon.ability3 %></p>
+    <p class="forfatter"><em>Laget av: <%= pokomon.author %></em></p>
+  </div>
+  <div>
+    <button type="submit" id="delete-trash">
+      <span
+        class="material-symbols-outlined delete"
+        data-id="<%= pokomon._id %>"
+        >delete</span
+      >
+    </button>
+
+    <button
+      class="update"
+      data-id="<%= pokomon._id %>"
+      data-name="<%= pokomon.name %>"
+      data-ability1="<%= pokomon.ability1 %>"
+      data-ability2="<%= pokomon.ability2 %>"
+      data-ability3="<%= pokomon.ability3 %>"
+    >
+      Oppdater
+    </button>
+  </div>
+</div>
+
+<% }) %> <% } %> <%-include('./partials/footer') %>
 
 <script>
-const addpokomonform = document.querySelector('#addPokomon');
-const author = document.querySelector('.d-none').innerText;
+  const addpokomonform = document.querySelector("#addPokomon");
+  const author = document.querySelector(".d-none").innerText;
 
-addpokomonform.addEventListener('submit', async e => {
+  addpokomonform.addEventListener("submit", async (e) => {
     e.preventDefault();
-    console.log('making pokomon');
-    try{
-        const response = await fetch(
-            '/pokomon',
-            {
-                method: 'POST',
-                body: JSON.stringify(
-                    {
-                        name: addpokomonform['name'].value,
-                        ability1: addpokomonform['ability1'].value,
-                        ability2: addpokomonform['ability2'].value,
-                        ability3: addpokomonform['ability3'].value,
-                        author
-                    }),
-                headers: {'Content-Type': 'application/json'}
-            });
-        if(response) {
+    const event = e.submitter.defaultValue;
+
+
+    switch (event) {
+      case "Last opp":
+        console.log("making pokomon");
+        try {
+          const response = await fetch("/pokomon", {
+            method: "POST",
+            body: JSON.stringify({
+              name: addpokomonform["name"].value,
+              ability1: addpokomonform["ability1"].value,
+              ability2: addpokomonform["ability2"].value,
+              ability3: addpokomonform["ability3"].value,
+              author,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+          if (response) {
             result = await response.json();
             console.log(result);
+          }
+          addpokomonform.reset();
+        } catch (err) {
+          console.log(err);
         }
-        addpokomonform.reset();
-    }catch(err){
-        console.log(err);
+        break;
+
+      case "Oppdater":
+        console.log("updating pokomon");
+        try {
+          const response = await fetch("/updatePokomon/",  {
+            method: "PUT",
+            body: JSON.stringify({
+              name: addpokomonform["name"].value,
+              ability1: addpokomonform["ability1"].value,
+              ability2: addpokomonform["ability2"].value,
+              ability3: addpokomonform["ability3"].value,
+              author,
+            }),
+            headers: { "Content-Type": "application/json" },
+          });
+          if (response) {
+            result = await response.json();
+            console.log(result);
+          }
+          addpokomonform.reset();
+        } catch (err) {
+          console.log(err);
+        }
+
+      default:
+        break;
     }
-});
+  });
+
+  //slette pokomons
+  document.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("delete")) {
+      const id = e.target.dataset.id;
+      console.log(id);
+
+      try {
+        const res = await fetch(`/deletePokomon/${id}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        const data = await res.json();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  });
+
+  //oppdatere pokomons
+  document.addEventListener("click", async (e) => {
+    if (e.target.classList.contains("update")) {
+      const id = e.target.dataset.id;
+      const { name, ability1, ability2, ability3 } = e.target.dataset;
+      console.log(id);
+      console.log(name, ability1, ability2, ability3);
+
+      addpokomonform.name.value = name;
+      addpokomonform.ability1.value = ability1;
+      addpokomonform.ability2.value = ability2;
+      addpokomonform.ability3.value = ability3;
+    }
+  });
 </script>

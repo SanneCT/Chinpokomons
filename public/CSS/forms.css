@@ -4,10 +4,10 @@ form {
     align-items: center;
 }
 
-input  {
+input {
   width: 25%;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #000;
   border-radius: 4px;
   box-sizing: border-box;
   margin-bottom: 16px;
@@ -19,7 +19,8 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #F4EBE8 ;
+    background-color: #F4EBE8;
+    border: 1px solid #000;
 }
   
 

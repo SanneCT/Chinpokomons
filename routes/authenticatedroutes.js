@@ -1,17 +1,17 @@
 const router = require('express').Router();
-const { requireAuth } = require('../middleware/requireAuth');
+const { requireAuth, ifHome } = require('../middleware/requireAuth');
+const { getOwn } = require('../controllers/authenticationController');
 
-router.get('/home', requireAuth, (req, res) => {
+router.get('/home/:username', requireAuth, ifHome, getOwn,  (req, res) => {
     res.render('home');
 });
-
 
 router.get('/logout',(req, res) => {
     res.cookie('jwt','', {maxAge: 1});
     res.status(200).redirect('/')
 });
 
-router.get('/veileder',(req, res) => {
+router.get('/veileder', requireAuth, (req, res) => {
     res.render('veileder')
 });
 

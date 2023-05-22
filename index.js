@@ -21,7 +21,7 @@ app.use(express.urlencoded({extended:true}));
 app.use(express.json());
 app.use(cookieparser()); //makes it a LOT easier to handle cookies.
 
-app.get('*', checkUser)
+app.get('*', checkUser);
 
 // Make sure to include the routes
 app.use(basicroutes); //basic functionality for the website

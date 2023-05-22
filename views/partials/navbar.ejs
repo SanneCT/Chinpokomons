@@ -13,11 +13,11 @@
     </div>
     <ul>
         <% if(typeof(user) !== 'undefined' && user) {%>
-            <a href="/home"><li>Hjem</li></a>
+            <a href="/home/<%= user.username %>"><li>Hjem</li></a>
             <a href="/veileder"><li>Brukerstøtte</li></a>
             <a href="/logout"><li>Logg ut</li></a>
         <% } else { %> 
-            <a href="/home"><li>Logg inn</li></a>
+            <a href="/login"><li>Logg inn</li></a>
         <% } %>
 
     </ul>

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 
-
 //Controllers for default routes
 const { index, login, createuserform } = require('../controllers/defaultController');
 const { loginUser, createuser } = require('../controllers/authenticationController');

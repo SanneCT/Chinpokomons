@@ -1,15 +1,13 @@
 const router = require('express').Router();
 
-const { sendPokomon, filter, deletePokomon } = require('../controllers/pokomoncontroller');
+const { sendPokomon, filter, deletePokomon, updatePokomon, } = require('../controllers/pokomoncontroller');
 
 router.post('/pokomon', sendPokomon); 
 
 router.get('/:username', filter);
 
-router.post('/deletePokomon/:id', deletePokomon)
+router.delete('/deletePokomon/:id', deletePokomon);
 
-// router.get('/deletePokomon/:id', deletePokomon, (req, res) => {
-// res.render('index');
-// });
+router.put('/updatePokomon', updatePokomon);
 
 module.exports = router;

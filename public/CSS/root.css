@@ -10,3 +10,8 @@ h1 {
   font-size: xx-large;
 }
 
+.error {
+  color: red;
+  margin-bottom: 5px;
+}
+

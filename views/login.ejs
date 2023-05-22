@@ -4,10 +4,10 @@
 <form action="/login" method="get" id="loginform">
   <h1>Logg inn</h1>
 
-  <input type="text" name="username" id="username" placeholder="username" />
+  <input type="text" name="username" id="username" placeholder="username" required/>
  
 
-  <input type="password" name="password" id="password" placeholder="password" />
+  <input type="password" name="password" id="password" placeholder="password" required/>
   <div class="username error"></div>
   <div class="password error"></div>
 
@@ -24,6 +24,7 @@
   const passwordError = document.querySelector(".password.error");
 
   form.addEventListener("submit", async (e) => {
+    console.log(e + " Event")
     e.preventDefault();
 
     //reset errors
@@ -42,16 +43,17 @@
       });
 
       const data = await res.json();
-      console.log(data);
+      console.log('this is data:', data);
 
       if (data.errors) {
         usernameError.textContent = data.errors.username;
         passwordError.textContent = data.errors.password;
-      }
+      };
 
       if (data.user) {
-        location.assign("/home");
-      }
+        location.assign(`/home/${data.username}`);
+      };
+
     } catch (err) {
       console.log(err);
     }

@@ -15,7 +15,7 @@ const userschema = new Schema({
     password: {
         type: String,
         required: [true, "Please enter a password"],
-        minlength: [minpasslength, `Your password must be at least ${minpasslength} characters long`]
+        minlength: [minpasslength, `Passordet ditt må være minst ${minpasslength} karakterer langt`]
     }
 })
 

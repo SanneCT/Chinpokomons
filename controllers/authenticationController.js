@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Pokomon = require('../models/pokomon')
 const jwt = require("jsonwebtoken");
 const maxAge = 3 * 24 * 60 * 60;
 
@@ -10,12 +11,12 @@ const handleErrors = (err) => {
 
   //incorrect username
   if (err.message === 'Credentials could not be validated') {
-    errors.username = ' Wrong username or password!'
+    errors.username = 'Feil brukernavn eller passord!'
   }
 
   //duplicate error code
   if (err.code === 11000) {
-    errors.username = "username already registered";
+    errors.username = "Brukernavnet er allerede tatt";
     return errors;
   }
 
@@ -44,7 +45,7 @@ const createuser = async (req, res) => {
     const token = createToken(user._id);
 
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ user: user._id });
+    res.status(201).json({username:user.username, user:user._id});
 
   } catch (err) {
     
@@ -61,7 +62,7 @@ const loginUser = async (req, res) => {
     const token = createToken(user._id);
 
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({ user: user._id });
+    res.status(200).json({username:user.username, user:user._id});
 
   } catch (err) {
 
@@ -70,5 +71,19 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getOwn = async (req, res, next) => {
+  const { username } = req.params;
+  console.log('username:', username);
 
-module.exports = { createuser, loginUser, };
+  try {
+      const pokomons = await Pokomon.find({ author: username }).sort({ createdAt: -1 });
+      console.log('pokomons er her:', pokomons);
+
+      res.render('home', { pokomons, username });
+  } catch (error) {
+      res.status(400).json({ error: error.message })
+  }
+}
+
+
+module.exports = { createuser, loginUser, getOwn, };

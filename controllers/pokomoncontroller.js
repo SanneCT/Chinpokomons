@@ -30,9 +30,7 @@ const filter = async (req, res, next) => {
 }
 
 const deletePokomon = async (req, res) => {
-    const {
-        id
-    } = req.params;
+    const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(404).json({
@@ -43,18 +41,44 @@ const deletePokomon = async (req, res) => {
         const pokomon = await Pokomon.findOneAndDelete({
             _id: id
         });
+
         if (!pokomon) {
             return res.status(404).json({
                 message: 'pokomon not found'
             });
         }
         res.status(200).json(pokomon);
-    } catch (error) {
-        console.log(error);
+
+    } catch (err) {
+        console.log(err);
         res.status(500).json({
             message: 'Error deleting pokomon'
         });
     }
 };
 
-module.exports = { sendPokomon, filter, deletePokomon }
+const updatePokomon = async (req, res) => {
+    const { name, ability1, ability2, ability3 } = req.body;
+    const pokomon = await Pokomon.findOne({ name });
+
+    if (!pokomon) {
+        return res.status(404).json({
+            message: 'pokomon not found'
+        });
+    }
+
+    try {
+        const updatedPokomon = await Pokomon.findOneAndUpdate({ name }, { name, ability1, ability2, ability3 }, { new: true });
+
+        res.status(200).json(updatedPokomon);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: 'Error updating pokomon'
+        });
+    }
+};
+
+
+module.exports = { sendPokomon, filter, deletePokomon, updatePokomon, }

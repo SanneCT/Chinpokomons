@@ -4,10 +4,10 @@
 
   <h1>Opprett en bruker</h1>
 
-  <input type="text" name="username" id="username" placeholder="username" />
+  <input type="text" name="username" id="username" placeholder="username" required/>
   
 
-  <input type="password" name="password" id="password" placeholder="password" />
+  <input type="password" name="password" id="password" placeholder="password" required/>
   <div class="username error"></div>
   <div class="password error"></div>
 
@@ -54,7 +54,7 @@
       }
 
       if(data.user) {
-        location.assign('/home');
+        location.assign(`/home/${data.username}`);
       }
 
     } catch (err) {

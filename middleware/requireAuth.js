@@ -39,4 +39,18 @@ const requireAuth = (req, res, next) => {
     }
   };
 
-module.exports = { checkUser, requireAuth };
+const ifHome = (req, res, next) => {
+    const searcedUsername = req.params.username;
+    const loggedInUser = res.locals.user.username;
+
+    if (searcedUsername === loggedInUser) {
+        next()
+        
+    } else {
+        res.redirect('/')
+        
+    next()
+    }
+}
+
+module.exports = { checkUser, requireAuth, ifHome };

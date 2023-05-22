@@ -45,3 +45,19 @@ font-family: 'Lilita One', cursive;
   margin-left: 40%;
   font-family: "Indie Flower", cursive;
 }
+
+.update {
+  display: inline-block;
+  width: 25%;
+  padding: 12px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  margin-left: 20px;
+}
+
+#delete-trash {
+  width: 50px;
+  margin-left: 200px;
+  margin-bottom: 10px;
+}

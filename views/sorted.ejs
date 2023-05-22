@@ -1,9 +1,9 @@
 <%-include('./partials/header') %>
 
-<h1>Chinpokomons by <%= username %></h1>
+
 
 <% if(pokomons.length > 0){ %> <% pokomons.forEach((pokomon) => { %>
-
+  <h1>Chinpokomons by <%= username %></h1>
 
 <div class="row">
   <div class="column column1">
@@ -20,4 +20,8 @@
   </div>
 </div>
 
-<% }) %> <% } %> <%-include('./partials/footer') %>
+<% }) %> <% } else { %>
+<h1> Beklager, det finnes ingen bruker med brukernavnet: <%= username %></h1> 
+    <% } %> 
+
+<%-include('./partials/footer') %>
