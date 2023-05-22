@@ -9,7 +9,7 @@ const handleErrors = (err) => {
   console.log(err.message, err.code);
   let errors = { username: "", password: "" };
 
-  //incorrect username
+  //ikke riktig brukernavn eller ikke riktig passord
   if (err.message === 'Credentials could not be validated') {
     errors.username = 'Feil brukernavn eller passord!'
   }
@@ -45,10 +45,10 @@ const createuser = async (req, res) => {
     const token = createToken(user._id);
 
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(201).json({ username: user.username, user: user._id });
+    res.status(201).json({username:user.username, user:user._id});
 
   } catch (err) {
-
+    
     const errors = handleErrors(err);
     res.status(400).json({ errors });
   }
@@ -62,7 +62,7 @@ const loginUser = async (req, res) => {
     const token = createToken(user._id);
 
     res.cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 });
-    res.status(200).json({ username: user.username, user: user._id });
+    res.status(200).json({username:user.username, user:user._id});
 
   } catch (err) {
 
@@ -76,12 +76,12 @@ const getOwn = async (req, res, next) => {
   console.log('username:', username);
 
   try {
-    const pokomons = await Pokomon.find({ author: username }).sort({ createdAt: -1 });
-    console.log('pokomons er her:', pokomons);
+      const pokomons = await Pokomon.find({ author: username }).sort({ createdAt: -1 });
+      console.log('pokomons er her:', pokomons);
 
-    res.render('home', { pokomons, username });
+      res.render('home', { pokomons, username });
   } catch (error) {
-    res.status(400).json({ error: error.message })
+      res.status(400).json({ error: error.message })
   }
 }
 
